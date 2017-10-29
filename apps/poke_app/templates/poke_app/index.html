@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang= "en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login/Registration</title>
+    <meta name="description" content= "Insert description of webpage">
+  </head>
+
+  <body>
+
+    <div class="registration">
+      <h2>Registration</h2>
+      {% if messages %}
+        {% for k in messages%}
+      <p {% if k.tags %} class="{{ k.tags }}" {% endif %} >
+        {{ k }}
+      </p>
+        {% endfor %}
+      {% endif %}
+      <form action="/createuser" method="post">
+      {% csrf_token %}
+        <p>Name:<input type="text" name="name"></p>
+        <p>Alias:<input type="text" name="alias"></p>
+        <p>Email:<input type="text" name="email"></p>
+        <p>Password:<input type="text" name="password"></p>
+        <p>Confirm Password:<input type="text" name="confirmpw"></p>
+        <p>Date of Birth:<input type="date" name="dob"></p>
+        <p><input type="submit" value="Register"></p>
+      </form>
+    </div>
+
+    <div class="login">
+      <form action="/login" method="post">
+      {% csrf_token %}
+        <p>Username:<input type="text" name="username"></p>
+        <p>Password:<input type="text" name="password"></p>
+        <p><input type="submit" value="Login"></p>
+      </form>
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang= "en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pokes</title>
+    <meta name="description" content= "Insert description of webpage">
+  </head>
+  <body>
+    <div id="container">
+
+      <div class="title">
+        <h2>Welcome, {{user.alias}}!</h2>
+        <p> <a href="/logout">Logout</a></p>
+      </div>
+
+      <div class= "summary">
+
+          {% for k in summary %}
+        <p> {{k.alias}} poked you {{k.pokes.count}} times</p>
+          {% endfor %}
+
+      </div>
+
+      <div class="others">
+        <h4>People you may want to poke:</h4>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Email Address</th>
+            <th>Poke History</th>
+            <th>Action</th>
+          </tr>
+        {% for k in others %}
+          <tr>
+            <td>{{k.name}}</td>
+            <td>{{k.alias}}</td>
+            <td>{{k.email}}</td>
+            {% if pokes %}
+            <td>{{pokes}}</td>
+            {% endif %}
+            <td><a href='/dashboard/{{k.id}}/add'>Poke</a></td>
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+
+  </div>
+  </body>
+</html>
